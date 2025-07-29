@@ -15,7 +15,8 @@ def call(){
           echo "✅ Commit created successfully."
 
           git remote set-url origin https://$GIT_USERNAME:$GIT_PASSWORD@github.com/Mohamedmagdy220/-CloudDevOpsProject.git
-          git push origin main
+          git pull origin main --rebase
+	  git push origin main
         fi
     '''
 
