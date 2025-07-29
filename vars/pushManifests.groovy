@@ -5,7 +5,10 @@ def call() {
     sh 'git config --global user.name "Jenkins"'
     sh 'git config --global user.email "jenkins@example.com"'
 
+
     sh '''
+	git checkout main
+
         git add k8s/app-deployment.yml
         if git diff --cached --quiet; then
           echo "⚠️ No changes to commit. Skipping commit step."
