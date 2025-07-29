@@ -1,5 +1,4 @@
 def call(){
 	echo "scanning docker image..."
-	sh "trivy image $IMAGE_NAME:${env.BUILD_NUMBER} "
-
+	sh "trivy image --exit-code 0 $IMAGE_NAME:${env.BUILD_NUMBER} "
 }
