@@ -1,9 +1,6 @@
 def call(){
 	echo "pushing updated "
 
-	withCredentials([usernamePassword(credentialsId: 'GITHUB_CREDENTIALS',
-                                  usernameVariable: 'GIT_USERNAME',
-                                  passwordVariable: 'GIT_PASSWORD')]) {
     sh '''
         git config --global user.name "Jenkins"
         git config --global user.email "jenkins@example.com"
