@@ -15,7 +15,7 @@ def call() {
         else
            git commit -m "📦 Update Kubernetes deployment manifest with new image tag"
            echo "✅ Commit created successfully."
-	   sh 'git push origin master'
+	   sh 'git push origin main'
         fi
 '''
     echo "Manifests have been successfully pushed to GitHub."
