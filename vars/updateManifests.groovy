@@ -1,6 +1,8 @@
 def call() {
     echo "Updating Kubernetes manifests..."
-
+    checkout scm
+    sh 'git checkout main'
+   
     def deploymentFile = readFile('k8s/app-deployment.yml')
 
     def imageName = "mohamed2200/blog_web_app"
