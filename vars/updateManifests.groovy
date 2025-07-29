@@ -5,7 +5,7 @@ def call() {
    
     def deploymentFile = readFile('k8s/app-deployment.yml')
 
-    def imageName = "${IMAGE_NAME}"
+    def imageName = "mohamed2200/django-web-blog"
     def newImageTag = "${imageName}:${env.BUILD_NUMBER}"
 
     // Replace the line containing the image
