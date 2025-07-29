@@ -2,7 +2,8 @@ def call() {
     echo "Updating Kubernetes manifests..."
 
     def deploymentFile = readFile('k8s/app-deployment.yml')
-
+    
+    def imageName = "mohamed2200/blog_web_app"
     def newImageTag = "$IMAGE_NAME:${env.BUILD_NUMBER}"
     deploymentFile = deploymentFile.replaceAll("$IMAGE_NAME:.*", "$IMAGE_NAME:${newImageTag}")
 
