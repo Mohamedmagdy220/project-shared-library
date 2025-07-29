@@ -2,14 +2,17 @@ def call() {
     echo "Updating Kubernetes manifests..."
 
     def deploymentFile = readFile('k8s/app-deployment.yml')
-    
+
     def imageName = "mohamed2200/blog_web_app"
-    def newImageTag = "$IMAGE_NAME:${env.BUILD_NUMBER}"
-    deploymentFile = deploymentFile.replaceAll("$IMAGE_NAME:.*", "$IMAGE_NAME:${newImageTag}")
+    def newImageTag = "${imageName}:${env.BUILD_NUMBER}"
 
-    writeFile(file: 'k8s/app-deployment.yml', text: deploymentFile)
+    // Replace the line containing the image
+    def updatedFile = deploymentFile.replaceAll(
+        /image:\s*${imageName}:\d+/,
+        "image: ${newImageTag}"
+    )
 
-    echo "Kubernetes deployment updated with new image tag: ${newImageTag}"
+    writeFile(file: 'k8s/app-deployment.yml', text: updatedFile)
 
+    echo "✅ Kubernetes deployment updated with new image tag: ${newImageTag}"
 }
-
