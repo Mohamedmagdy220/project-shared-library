@@ -6,7 +6,8 @@ def call(){
         git config --global user.email "jenkins@example.com"
 
         git checkout main
-        git add k8s/app-deployment.yml
+        git pull origin main --rebase
+	git add k8s/app-deployment.yml
 
         if git diff --cached --quiet; then
           echo "🛑 No changes to commit. Skipping commit step."
@@ -15,7 +16,6 @@ def call(){
           echo "✅ Commit created successfully."
 
           git remote set-url origin https://$GIT_USERNAME:$GIT_PASSWORD@github.com/Mohamedmagdy220/-CloudDevOpsProject.git
-          git pull origin main --rebase
 	  git push origin main
         fi
     '''
