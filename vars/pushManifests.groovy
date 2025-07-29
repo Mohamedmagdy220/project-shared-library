@@ -5,6 +5,8 @@ def call() {
     sh 'git config --global user.name "Jenkins"'
     sh 'git config --global user.email "jenkins@example.com"'
 
+    sh "sed -i 's|\\${BUILD_NUMBER}|${env.BUILD_NUMBER}|g' k8s/app-deployment.yml"
+
     sh '''
         git add k8s/app-deployment.yml
         if git diff --cached --quiet; then
